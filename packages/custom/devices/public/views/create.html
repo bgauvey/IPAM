@@ -1,0 +1,309 @@
+<section data-ng-controller="DevicesController">
+    <form name="deviceForm" class="form-horizontal col-md-9" role="form" data-ng-submit="create(deviceForm.$valid)" novalidate>
+        <div role="tabpanel">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="create-tabs">
+                <li role="presentation" class="active"><a href="#detail" aria-controls="home" role="tab" data-toggle="tab">Equipment Detail</a>
+                </li>
+
+                <li role="presentation"><a href="#location" aria-controls="location" role="tab" data-toggle="tab">Location</a>
+                </li>
+                <li role="presentation"><a href="#network" aria-controls="network" role="tab" data-toggle="tab">Network</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                      Additional Information <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation"><a href="#tag" aria-controls="tag" role="tab" data-toggle="tab">Tag / Serial #</a>
+                        </li>
+                        <li role="presentation"><a href="#storage" aria-controls="storage" role="tab" data-toggle="tab">Storage</a>
+                        </li>
+                        <li role="presentation"><a href="#os" aria-controls="os" role="tab" data-toggle="tab">OS Detail</a>
+                        </li>
+                        <li role="presentation"><a href="#warranty" aria-controls="warranty" role="tab" data-toggle="tab">Warranty</a>
+                        </li>
+                        <li role="presentation"><a href="#purchase" aria-controls="purchase" role="tab" data-toggle="tab">Purchase &amp; Lease</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+               <br />
+                <div role="tabpanel" class="tab-pane fade in active" id="detail">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.description.$invalid }">
+                        <label mean-token="'create-description'" class="col-md-3 control-label">Description</label>
+                        <div class="col-md-6">
+                            <input name="description" type="text" class="form-control" data-ng-model="description" id="description" placeholder="Production CRM DB Server" required>
+                            <div ng-show="submitted && deviceForm.description.$invalid" class="help-block">
+                                <p ng-show="deviceForm.description.$error.required">Description is required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.hostName.$invalid }">
+                        <label mean-token="'create-hostName'" for="hostName" class="col-md-3 control-label">Host Name</label>
+                        <div class="col-md-6">
+                            <input name="hostName" type="text" class="form-control" data-ng-model="hostName" id="hostName" placeholder="prod-crm-db-srv" required>
+                            <div ng-show="submitted && deviceForm.hostName.$invalid" class="help-block">
+                                <p ng-show="deviceForm.hostName.$error.required">Host Name is required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.department.$invalid }">
+                        <label mean-token="'create-department'" for="department" class="col-md-3 control-label">Department</label>
+                        <div class="col-md-6">
+                            <input name="department" type="text" class="form-control" data-ng-model="department" id="department" placeholder="Sales">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.manufacturer.$invalid }">
+                        <label mean-token="'create-manufacturer'" for="manufacturer" class="col-md-3 control-label">Manufacturer</label>
+                        <div class="col-md-6">
+                            <input name="manufacturer" type="text" class="form-control" data-ng-model="manufacturer" id="manufacturer" placeholder="DELL">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.model.$invalid }">
+                        <label mean-token="'create-model'" for="model" class="col-md-3 control-label">Model</label>
+                        <div class="col-md-6">
+                            <input name="model" type="text" class="form-control" data-ng-model="model" id="model" placeholder="PowerEdge 2500">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.equipmentStatus.$invalid }">
+                        <label mean-token="'create-equipmentStatus'" for="equipmentStatus" class="col-md-3 control-label">Status</label>
+                        <div class="col-md-6">
+                            <select name="equipmentStatus" class="form-control" data-ng-model="equipmentStatus" id="equipmentStatus">
+                                <option value="1" selected>Active - Currently in use</option>
+                                <option value="2">Retried - Old Equipment, not getting used anymore</option>
+                                <option value="3">Available - Old/New equipment, ready and available for usage</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.category.$invalid }">
+                        <label mean-token="'create-category'" for="category" class="col-md-3 control-label">Category</label>
+                        <div class="col-md-6">
+                            <input name="category" type="text" class="form-control" data-ng-model="category" id="category" placeholder="Server">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.url.$invalid }">
+                        <label mean-token="'create-url'" for="url" class="col-md-3 control-label">Url</label>
+                        <div class="col-md-6">
+                            <input name="url" type="url" class="form-control" data-ng-model="url" id="url">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.notes.$invalid }">
+                        <label mean-token="'create-notes'" for="notes" class="col-md-3 control-label">Notes</label>
+                        <div class="col-md-6">
+                            <textarea name="notes" cols="30" rows="10" type="text" class="form-control" data-ng-model="notes" id="notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="location">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.location.$invalid }">
+                        <label mean-token="'create-location'" for="location" class="col-md-3 control-label">Physical Location</label>
+                        <div class="col-md-6">
+                            <input name="location" type="text" class="form-control" data-ng-model="location" id="location" placeholder="Los Angeles">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.room.$invalid }">
+                        <label mean-token="'create-room'" for="room" class="col-md-3 control-label">Cage/Room#</label>
+                        <div class="col-md-6">
+                            <input name="room" type="text" class="form-control" data-ng-model="room" id="room">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.rack.$invalid }">
+                        <label mean-token="'create-rack'" for="rack" class="col-md-3 control-label">Rack #</label>
+                        <div class="col-md-6">
+                            <input name="rack" type="text" class="form-control" data-ng-model="rack" id="rack">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.rackPosition.$invalid }">
+                        <label mean-token="'create-rackPosition'" for="rackPosition" class="col-md-3 control-label">Rack Position</label>
+                        <div class="col-md-6">
+                            <input name="rackPosition" type="text" class="form-control" data-ng-model="rackPosition" id="rackPosition">
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="network">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.privateIp.$invalid }">
+                        <label mean-token="'create-privateIp'" for="privateIp" class="col-md-3 control-label">Private IP</label>
+                        <div class="col-md-6">
+                            <input name="privateIp" type="text" class="form-control" data-ng-model="privateIp" id="privateIp" placeholder="192.168.100.1">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.publicIp.$invalid }">
+                        <label mean-token="'create-publicIp'" for="publicIp" class="col-md-3 control-label">Public IP</label>
+                        <div class="col-md-6">
+                            <input name="publicIp" type="text" class="form-control" data-ng-model="publicIp" id="publicIp">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.mac.$invalid }">
+                        <label mean-token="'create-mac'" for="mac" class="col-md-3 control-label">MAC Address</label>
+                        <div class="col-md-6">
+                            <input name="mac" type="text" class="form-control" data-ng-model="mac" id="mac" placeholder="fecd-01ea-cec0-abdf">
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.subnet.$invalid }">
+                        <label mean-token="'create-subnet'" for="subnet" class="col-md-3 control-label">Subnet Mask</label>
+                        <div class="col-md-6">
+                            <input name="subnet" type="text" class="form-control" data-ng-model="subnet" id="subnet" placeholder="255.255.0.0">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.nic.$invalid }">
+                        <label mean-token="'create-nic'" for="nic" class="col-md-3 control-label">NIC</label>
+                        <div class="col-md-6">
+                            <input name="nic" type="text" class="form-control" data-ng-model="nic" id="nic" placeholder="Slot1/Port1">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.switchPort.$invalid }">
+                        <label mean-token="'create-switchPort'" for="switchPort" class="col-md-3 control-label">Switch/Port</label>
+                        <div class="col-md-6">
+                            <input name="switchPort" type="text" class="form-control" data-ng-model="switchPort" id="switchPort" placeholder="Switch1/Port4">
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tag">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.serialNumber.$invalid }">
+                        <label mean-token="'create-serialNumber'" for="serialNumber" class="col-md-3 control-label">Serial Number</label>
+                        <div class="col-md-6">
+                            <input name="serialNumber" type="text" class="form-control" data-ng-model="serialNumber" id="serialNumber">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.partNumber.$invalid }">
+                        <label mean-token="'create-partNumber'" for="partNumber" class="col-md-3 control-label">Part Number</label>
+                        <div class="col-md-6">
+                            <input name="partNumber" type="text" class="form-control" data-ng-model="partNumber" id="partNumber">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.serviceTag.$invalid }">
+                        <label mean-token="'create-serviceTag'" for="serviceTag" class="col-md-3 control-label">Service Tag</label>
+                        <div class="col-md-6">
+                            <input name="serviceTag" type="text" class="form-control" data-ng-model="serviceTag" id="serviceTag">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.expressCode.$invalid }">
+                        <label mean-token="'create-expressCode'" for="expressCode" class="col-md-3 control-label">Express Code</label>
+                        <div class="col-md-6">
+                            <input name="expressCode" type="text" class="form-control" data-ng-model="expressCode" id="expressCode">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.assetTag.$invalid }">
+                        <label mean-token="'create-assetTag'" for="assetTag" class="col-md-3 control-label">Company Asset Tag</label>
+                        <div class="col-md-6">
+                            <input name="assetTag" type="text" class="form-control" data-ng-model="assetTag" id="assetTag">
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="storage">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.sanConnected.$invalid }">
+                        <label mean-token="'create-sanConnected'" for="sanConnected" class="col-md-3 control-label">SAN/NAS Connected</label>
+                        <div class="col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="sanConnected" type="checkbox" class="form-control" data-ng-model="sanConnected" id="sanConnected">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.totalDriveCount.$invalid }">
+                        <label mean-token="'create-totalDriveCount'" for="totalDriveCount" class="col-md-3 control-label">Total Drive Count</label>
+                        <div class="col-md-6">
+                            <input name="totalDriveCount" type="number" class="form-control" data-ng-model="totalDriveCount" id="totalDriveCount">
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="os">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.os.$invalid }">
+                        <label mean-token="'create-os'" for="os" class="col-md-3 control-label">OS</label>
+                        <div class="col-md-6">
+                            <input name="os" type="text" class="form-control" data-ng-model="os" id="os" placeholder="Windows Server 2012">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.osVersion.$invalid }">
+                        <label mean-token="'create-osVersion'" for="osVersion" class="col-md-3 control-label">OS Version</label>
+                        <div class="col-md-6">
+                            <input name="osVersion" type="text" class="form-control" data-ng-model="osVersion" id="osVersion">
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="warranty">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.warrantyStart.$invalid }">
+                        <label mean-token="'create-warrantyStart'" for="warrantyStart" class="col-md-3 control-label">Warranty Start Date</label>
+                        <div class="col-md-6">
+                            <input name="warrantyStart" type="date" class="form-control" data-ng-model="warrantyStart" id="warrantyStart">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.warrantyEnd.$invalid }">
+                        <label mean-token="'create-warrantyEnd'" for="warrantyEnd" class="col-md-3 control-label">Warranty End Date</label>
+                        <div class="col-md-6">
+                            <input name="warrantyEnd" type="date" class="form-control" data-ng-model="warrantyEnd" id="warrantyEnd">
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="purchase">
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.dateOfPurchase.$invalid }">
+                        <label mean-token="'create-dateOfPurchase'" for="dateOfPurchase" class="col-md-3 control-label">Date Of Purchase</label>
+                        <div class="col-md-6">
+                            <input name="dateOfPurchase" type="date" class="form-control" data-ng-model="dateOfPurchase" id="dateOfPurchase">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.purchasePrice.$invalid }">
+                        <label mean-token="'create-purchasePrice'" for="purchasePrice" class="col-md-3 control-label">Purchase Price</label>
+                        <div class="col-md-6">
+                            <input name="purchasePrice" type="text" class="form-control" data-ng-model="purchasePrice" id="purchasePrice">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.leaseStart.$invalid }">
+                        <label mean-token="'create-leaseStart'" for="leaseStart" class="col-md-3 control-label">Lease Start Date</label>
+                        <div class="col-md-6">
+                            <input name="leaseStart" type="date" class="form-control" data-ng-model="leaseStart" id="leaseStart">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.leaseEnd.$invalid }">
+                        <label mean-token="'create-leaseEnd'" for="leaseEnd" class="col-md-3 control-label">Lease End Date</label>
+                        <div class="col-md-6">
+                            <input name="leaseEnd" type="date" class="form-control" data-ng-model="leaseEnd" id="leaseEnd">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.leasingCompany.$invalid }">
+                        <label mean-token="'create-leasingCompany'" for="leasingCompany" class="col-md-3 control-label">Leasing Company</label>
+                        <div class="col-md-6">
+                            <input name="leasingCompany" type="text" class="form-control" data-ng-model="leasingCompany" id="leasingCompany">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.buyOutOption.$invalid }">
+                        <label mean-token="'create-buyOutOption'" for="buyOutOption" class="col-md-3 control-label">Buy Out Option</label>
+                        <div class="col-md-6">
+                            <input name="buyOutOption" type="text" class="form-control" data-ng-model="buyOutOption" id="buyOutOption">
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : submitted && deviceForm.monthlyLeasePayment.$invalid }">
+                        <label mean-token="'create-monthlyLeasePayment'" for="monthlyLeasePayment" class="col-md-3 control-label">Monthly Lease Payment</label>
+                        <div class="col-md-6">
+                            <input name="monthlyLeasePayment" type="text" class="form-control" data-ng-model="monthlyLeasePayment" id="monthlyLeasePayment">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+
+<script>
+    $('#create-tabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>

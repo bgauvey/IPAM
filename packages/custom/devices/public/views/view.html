@@ -1,0 +1,147 @@
+<section data-ng-controller="DevicesController" data-ng-init="findOne()">
+    <h2>{{device.description}}</h2>
+
+    <accordion close-others="true">
+        <accordion-group heading="Equipment Detail" is-open="true">
+            <div class="row">
+                <div class="col-md-2"><strong>Host Name</strong></div>
+                <div class="col-md-4"><div>{{device.hostName}}</div></div>
+                <div class="col-md-2"><strong>Department</strong></div>
+                <div class="col-md-4"><div>{{device.department}}</div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Manufacturer</strong></div>
+                <div class="col-md-4"><div>{{device.manufacturer}}</div></div>
+                <div class="col-md-2"><strong>Model</strong></div>
+                <div class="col-md-4"><div>{{device.model}}</div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Status</strong></div>
+                <div class="col-md-4">
+                  <div data-ng-switch="device.equipmentStatus">
+                    <span ng-switch-when="1">Active</span>
+                    <span ng-switch-when="2">Retired</span>
+                    <span ng-switch-when="3">Available</span>
+                  </div>
+                </div>
+                <div class="col-md-2"><strong>Category</strong></div>
+                <div class="col-md-4"><div>{{device.category}}</div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>URL</strong></div>
+                <div class="col-md-4"><a href="{{device.url}}" target="_blank">{{device.url}}</a></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"><strong>Notes</strong></div>
+                <div class="col-md-10"><div>{{device.notes}}</div></div>
+            </div>
+        </accordion-group>
+
+        <accordion-group heading="Location">
+            <div class="row">
+               <div class="col-md-2"><strong>Physical Location</strong></div>
+               <div class="col-md-4"><div>{{device.location}}</div></div>
+               <div class="col-md-2"><strong>Cage/Room #</strong></div>
+               <div class="col-md-4"><div>{{device.room}}</div></div>
+           </div>
+           <div class="row">
+               <div class="col-md-2"><strong>Rack</strong></div>
+               <div class="col-md-4"><div>{{device.rack}}</div></div>
+               <div class="col-md-2"><strong>Rack Position</strong></div>
+               <div class="col-md-4"><div>{{device.rackPosition}}</div></div>
+           </div>
+        </accordion-group>
+        <accordion-group heading="Network">
+            <div class="row">
+               <div class="col-md-2"><strong>Private IP</strong></div>
+               <div class="col-md-4"><div>{{device.privateIp}}</div></div>
+               <div class="col-md-2"><strong>Public IP</strong></div>
+               <div class="col-md-4"><div>{{device.publicIp}}</div></div>
+           </div>
+           <div class="row">
+               <div class="col-md-2"><strong>MAC Address</strong></div>
+               <div class="col-md-4"><div>{{device.mac}}</div></div>
+               <div class="col-md-2"><strong>NIC</strong></div>
+               <div class="col-md-4"><div>{{device.nic}}</div></div>
+           </div>
+           <div class="row">
+               <div class="col-md-2"><strong>Subnet</strong></div>
+               <div class="col-md-4"><div>{{device.subnet}}</div></div>
+               <div class="col-md-2"><strong>Switch/Port</strong></div>
+               <div class="col-md-4"><div>{{device.switchPort}}</div></div>
+           </div>
+        </accordion-group>
+        <accordion-group heading="Tag / Serail Number">
+            <div class="row">
+               <div class="col-md-2"><strong>Serial Number</strong></div>
+               <div class="col-md-4"><div>{{device.serialNumber}}</div></div>
+               <div class="col-md-2"><strong>Part Number</strong></div>
+               <div class="col-md-4"><div>{{device.partNumber}}</div></div>
+           </div>
+           <div class="row">
+               <div class="col-md-2"><strong>Service Tag</strong></div>
+               <div class="col-md-4"><div>{{device.serviceTag}}</div></div>
+               <div class="col-md-2"><strong>Express Code</strong></div>
+               <div class="col-md-4"><div>{{device.expressCode}}</div></div>
+           </div>
+           <div class="row">
+               <div class="col-md-2"><strong>Asset Tag</strong></div>
+               <div class="col-md-4"><div>{{device.assetTag}}</div></div>
+           </div>
+        </accordion-group>
+        <accordion-group heading="Storage">
+            <div class="row">
+               <div class="col-md-2"><strong>SAN/NAS Attached</strong></div>
+               <div class="col-md-4"><div>{{device.sanConnected ? "Yes" : "No"}}</div></div>
+               <div class="col-md-2"><strong>Total Drive Count</strong></div>
+               <div class="col-md-4"><div>{{device.totalDriveCount}}</div></div>
+           </div>
+        </accordion-group>
+        <accordion-group heading="OS Detail">
+            <div class="row">
+               <div class="col-md-2"><strong>OS</strong></div>
+               <div class="col-md-4"><div>{{device.os}}</div></div>
+               <div class="col-md-2"><strong>OS Version</strong></div>
+               <div class="col-md-4"><div>{{device.osVersion}}</div></div>
+           </div>
+        </accordion-group>
+        <accordion-group heading="Warranty">
+            <div class="row">
+               <div class="col-md-2"><strong>Warranty Start Date</strong></div>
+               <div class="col-md-4"><div>{{device.warrantyStart | date:short}}</div></div>
+               <div class="col-md-2"><strong>Warranty End Date</strong></div>
+               <div class="col-md-4"><div>{{device.warrantyEnd | date:short}}</div></div>
+           </div>
+        </accordion-group>
+        <accordion-group heading="Purchase &amp; Lease">
+            <div class="row">
+               <div class="col-md-2"><strong>Date Of Purchase</strong></div>
+               <div class="col-md-4"><div>{{device.dateOfPurchase | date:short}}</div></div>
+               <div class="col-md-2"><strong>Purchase Price</strong></div>
+               <div class="col-md-4"><div>{{device.purchasePrice | currency}}</div></div>
+           </div>
+           <div class="row">
+               <div class="col-md-2"><strong>Lease Begin Date</strong></div>
+               <div class="col-md-4"><div>{{device.leaseStart | date:short}}</div></div>
+               <div class="col-md-2"><strong>Lease Expiry Date</strong></div>
+               <div class="col-md-4"><div>{{device.leaseEnd | date:short}}</div></div>
+           </div>
+           <div class="row">
+               <div class="col-md-2"><strong>Buy Out Option</strong></div>
+               <div class="col-md-4"><div>{{device.buyOutOption | currency}}</div></div>
+               <div class="col-md-2"><strong>Monthly Lease Payment</strong></div>
+               <div class="col-md-4"><div>{{device.monthlyLeasePayment | currency}}</div></div>
+           </div>
+        </accordion-group>
+
+    </accordion>
+
+    <div data-ng-if="hasAuthorization(device)">
+        <a class="btn" href="/#!/devices/{{device._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove(device);">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+</section>

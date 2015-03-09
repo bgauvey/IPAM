@@ -1,0 +1,49 @@
+<section data-ng-controller="DevicesController" data-ng-init="find()">
+    <ul class="devices unstyled">
+        <table class="table table-striped table-hover ">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Description</th>
+                    <th>Host Name</th>
+                    <th>Status</th>
+                    <th>Category</th>
+                    <th>IP Address</th>
+                    <th>MAC Address</th>
+                    <th>NIC</th>
+                    <th>Switch/Port</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="device in devices">
+                    <td>
+                        <div data-ng-if="hasAuthorization(device)">
+                            <a class="btn" href="/#!/devices/{{device._id}}/edit">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                            <a class="btn" data-ng-click="remove(device);">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                    <td><a href="/#!/devices/{{device._id}}">{{ device.description }}</a>
+                    </td>
+                    <td>{{ device.hostName }}</td>
+                    <td>
+                        <div data-ng-switch="device.equipmentStatus">
+                            <span ng-switch-when="1">Active</span>
+                            <span ng-switch-when="2">Retired</span>
+                            <span ng-switch-when="3">Available</span>
+                        </div>
+                    </td>
+                    <td>{{ device.category }}</td>
+                    <td>{{ device.privateIp }}</td>
+                    <td>{{ device.mac }}</td>
+                    <td>{{ device.nic }}</td>
+                    <td>{{ device.switchPort }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ul>
+    <h1 data-ng-hide="!devices || devices.length">No devices yet. <br> Why don't you <a href="/#!/devices/create">Create One</a>?</h1>
+</section>
