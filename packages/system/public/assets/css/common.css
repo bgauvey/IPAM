@@ -19,6 +19,7 @@
     background-repeat: no-repeat;
     height: 50px;
     width: 150px;
+    margin-left: 5px;
 }
 .account {
 	text-align: right;

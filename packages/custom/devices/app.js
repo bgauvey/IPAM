@@ -19,15 +19,11 @@ Devices.register(function(app, auth, database) {
   //We are adding a link to the main menu for all authenticated users
   Devices.menus.add({
     title: 'Devices',
-    link: 'all devices',
+    link: 'device.list',
     roles: ['authenticated'],
     menu: 'main'
   });
-  Devices.menus.add({
-    'roles': ['authenticated'],
-    'title': 'Create New Device',
-    'link': 'create device'
-  });
+
   Devices.aggregateAsset('css', 'devices.css');
 
   /**

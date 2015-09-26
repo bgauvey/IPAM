@@ -11,7 +11,8 @@
     "bootstrap": "~3.3.2",
     "angular-bootstrap": "~0.12.1",
     "angular-ui-router": "~0.2.13",
-    "bootswatch": "~3.3.2"
+    "bootswatch": "~3.3.2",
+    "font-awesome": "~4.3.0"
   },
   "resolutions": {
     "jquery": "~2.1.3",

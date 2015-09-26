@@ -1,15 +1,30 @@
-<div class="" data-ng-controller="DevicesController">
-  <h1>Example view from your new awesome package</h1>
-  <h2>Package: {{package.name}}</h2>
-
-    
-  <h3><img src="/devices/assets/img/logo.png" /></h3>
-  </br>
-  <p class="alert alert-info">You can find your package in /packages/devices</p>
-  </br>
-  <p class="alert alert-warning">MEAN versions prior to 0.3.2 will be in /node_modules/devices</p>
-  </br>
-  <h3><a href="http://www.mean.io/#!/docs">Documentation</a></h3>
-  </br>
+<div class="row row-fluid" data-ng-controller="DevicesController">
+    <div class="row-offcanvas row-offcanvas-left">
+        <div id="sidebar" class="sidebar-offcanvas">
+            <div class="col-md-12">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a ui-sref="network.list" href="/#!/networks/networks/all">Networks</a></li>
+                    <li><a ui-sref="device.list" href="/#!/devices/devices/all">Devices</a></li>
+                    <li></li>
+                    <li><h4>Filters</h4></li>
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Section</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="main">
+            <div class="col-md-12" ui-view></div>
+        </div>
+    </div>
 </div>
-
+<script>
+    $(document).ready(function() {
+      $('[data-toggle=offcanvas]').click(function() {
+        $('.row-offcanvas').toggleClass('active');
+      });
+    });
+</script>
